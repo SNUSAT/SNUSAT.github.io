@@ -1029,6 +1029,10 @@
 
 		<P CLASS=HStyle4>1) <SPAN STYLE='font-family:"바탕"'>로버는 발사후 낙하한 위성체의 위치를 추적하고, 자율 주행하여, 낙하지점에서 위성을 회수, 목표지점까지 운반해오는 역할을 맡게 된다. </SPAN></P>
 
+		<P CLASS=HStyle4>2) <SPAN STYLE='font-family:"바탕"'>Bring Back Mission을 수행하기 위해서 로버는 위성체로부터 GPS 좌표를 전달받아 PID 제어를 통해 위성체로 접근한다.</SPAN></P>
+
+		<P CLASS=HStyle4>3) <SPAN STYLE='font-family:"바탕"'>GPS 오차 이내로 접근하게 되면 정지한 후, 영상인식을 통해 위성을의 획득을 시도한다. 비전 센서로 영상처리를 하여 얻어지는 정보와 위성체의 heading 정보와 자신의 heading 정보를 사용하여 위성체가 놓여있는 방향으로 다가가 집게메커니즘으로 들어올려 짐칸에 싣는 것으로 도킹이 완료된다. 도킹에 성공한 후, 목적 지점까지 위성을 탑재한채 주행하여 전체 임무를 완수한다.</SPAN></P>
+
 		<P CLASS=HStyle0><BR></P>
 
 		<P CLASS=HStyle0><IMG src="PICEA8D.png" alt="그림입니다.
@@ -1048,13 +1052,21 @@
 				</P>
 			</P>
 
-			<P CLASS=HStyle4>2) <SPAN STYLE='font-family:"바탕"'>Bring Back Mission을 수행하기 위해서 로버는 위성체로부터 GPS 좌표를 전달받아 PID 제어를 통해 위성체로 접근한다.</SPAN></P>
-
-			<P CLASS=HStyle4>3) <SPAN STYLE='font-family:"바탕"'>GPS 오차 이내로 접근하게 되면 정지한 후, 영상인식을 통해 위성을의 획득을 시도한다. 비전 센서로 영상처리를 하여 얻어지는 정보와 위성체의 heading 정보와 자신의 heading 정보를 사용하여 위성체가 놓여있는 방향으로 다가가 집게메커니즘으로 들어올려 짐칸에 싣는 것으로 도킹이 완료된다. 도킹에 성공한 후, 목적 지점까지 위성을 탑재한채 주행하여 전체 임무를 완수한다.</SPAN></P>
 
 			<P CLASS=HStyle0>&nbsp;&nbsp;</P>
 
 			<P CLASS=HStyle3>나. <SPAN STYLE='font-family:"바탕"'>Satellite</SPAN></P>
+
+			<P CLASS=HStyle0><IMG src="PICEAFE.png" alt="그림입니다.
+				원본 그림의 이름: CLP000008f40002.bmp
+				원본 그림의 크기: 가로 894pixel, 세로 441pixel" width="450" height="222" vspace="0" hspace="0" border="0">
+				<P CLASS=HStyle0>그림 5 Satellite 시스템 개요
+				</P>
+			</P>
+
+			<P CLASS=HStyle0><BR></P>
+
+			<P CLASS=HStyle4>1) <SPAN STYLE='font-family:"바탕"'>상세설계가 완료된 위성의 모습은 그림14와 같으며 시스템의 개요는 그림15와 같다.</SPAN></P>
 
 			<P CLASS=HStyle0><IMG src="PICEADD.png" alt="그림입니다.
 				원본 그림의 이름: CLP000008f40003.bmp
@@ -1065,18 +1077,7 @@
 
 			<P CLASS=HStyle0><BR></P>
 
-			<P CLASS=HStyle4>1) <SPAN STYLE='font-family:"바탕"'>상세설계가 완료된 위성의 모습은 그림14와 같으며 시스템의 개요는 그림15와 같다.</SPAN></P>
-
 			<P CLASS=HStyle4>2) <SPAN STYLE='font-family:"바탕"'>위성은 Arduino Mega를 주 MCU로 하여 통신시스템, 항법시스템(GPS), 그리고 자세제어 시스템으로 구성</SPAN></P>
-
-			<P CLASS=HStyle0><BR></P>
-
-			<P CLASS=HStyle0><IMG src="PICEAFE.png" alt="그림입니다.
-				원본 그림의 이름: CLP000008f40002.bmp
-				원본 그림의 크기: 가로 894pixel, 세로 441pixel" width="450" height="222" vspace="0" hspace="0" border="0">
-				<P CLASS=HStyle0>그림 5 Satellite 시스템 개요
-				</P>
-			</P>
 
 			<P CLASS=HStyle0><BR></P>
 
@@ -1462,8 +1463,6 @@
 
 <P CLASS=HStyle3>가. <SPAN STYLE='font-family:"바탕"'>Rover</SPAN></P>
 
-<P CLASS=HStyle1><SPAN STYLE='font-family:"바탕"'><BR></SPAN></P>
-
 <P CLASS=HStyle1><SPAN STYLE='font-family:"바탕"'>개념설계에서 선정한 부품과 설계 방법론들을 이용하여 시스템의 상세설계를 정의했다.</SPAN></P>
 
 <P CLASS=HStyle1><SPAN STYLE='font-family:"바탕"'>Rover는 총 4개의 프로토 타입이 제작되었으며, 프로토타입을 통해 조립의 간섭문제, 전기시스템과의 간섭 문제 등을 해결하였으며, 조립성을 개선하는데 초점을 맞추었다. </SPAN></P>
@@ -1480,6 +1479,8 @@
 <P CLASS=HStyle0><BR></P>
 
 <P CLASS=HStyle4>1) <SPAN STYLE='font-family:"바탕"'>ADCS Board</SPAN></P>
+
+<P CLASS=HStyle1><SPAN STYLE='font-family:"바탕"'>&nbsp;&nbsp;로버의 ADCS보드에서는 통신과 항법을 함께 담당한다. 항법은 로버의 상대적인 자세(heading)과 gps좌표 정보를 이용하여 로버가 이동할 좌표를 제어한다. </SPAN></P>
 
 <P CLASS=HStyle0><IMG src="PICEBEE.png" alt="그림입니다.
 	원본 그림의 이름: CLP000004947d89.bmp
@@ -1499,11 +1500,9 @@
 
 	<P CLASS=HStyle0><BR></P>
 
-	<P CLASS=HStyle1><SPAN STYLE='font-family:"바탕"'>&nbsp;&nbsp;로버의 ADCS보드에서는 통신과 항법을 함께 담당한다. 항법은 로버의 상대적인 자세(heading)과 gps좌표 정보를 이용하여 로버가 이동할 좌표를 제어한다. </SPAN></P>
-
-	<P CLASS=HStyle0><BR></P>
-
 	<P CLASS=HStyle4>2) <SPAN STYLE='font-family:"바탕"'>Main Board</SPAN></P>
+
+	<P CLASS=HStyle1><SPAN STYLE='font-family:"바탕"'>&nbsp;&nbsp;Mainboard는 로버의 onboard computer역할을 하며 로버시스템 전치를 제어하는 역할</SPAN></P>
 
 	<P CLASS=HStyle0><IMG src="PICEC1E.png" alt="그림입니다.
 		원본 그림의 이름: CLP000004940001.bmp
@@ -1523,9 +1522,13 @@
 
 		<P CLASS=HStyle0><BR></P>
 
-		<P CLASS=HStyle1><SPAN STYLE='font-family:"바탕"'>&nbsp;&nbsp;Mainboard는 로버의 onboard computer역할을 하며 로버시스템 전치를 제어하는 역할</SPAN></P>
-
 		<P CLASS=HStyle4>3) <SPAN STYLE='font-family:"바탕"'>Power Distribution Board</SPAN></P>
+
+		<P CLASS=HStyle5>가) <SPAN STYLE='font-family:"바탕"'>로버의 Power Distribution 보드는 전력을 분배하는 역할</SPAN></P>
+
+		<P CLASS=HStyle5>나) <SPAN STYLE='font-family:"바탕"'>로버에는 각각의 하위 서브시스템을 구동하기 위해 총 3개의 배터리를 사용</SPAN></P>
+
+		<P CLASS=HStyle5>다) <SPAN STYLE='font-family:"바탕"'>로버가 하나의 전력시스템에 묶여 전체 시스템이 fail하는 것을 방지하기 위해서</SPAN></P>
 
 		<P CLASS=HStyle0><SPAN STYLE='font-weight:"bold"'><IMG src="PICEC7E.png" alt="그림입니다.
 			원본 그림의 이름: CLP000004940002.bmp
@@ -1545,12 +1548,6 @@
 			<P CLASS=HStyle0><BR>
 			</P>
 		</SPAN></P>
-
-		<P CLASS=HStyle5>가) <SPAN STYLE='font-family:"바탕"'>로버의 Power Distribution 보드는 전력을 분배하는 역할</SPAN></P>
-
-		<P CLASS=HStyle5>나) <SPAN STYLE='font-family:"바탕"'>로버에는 각각의 하위 서브시스템을 구동하기 위해 총 3개의 배터리를 사용</SPAN></P>
-
-		<P CLASS=HStyle5>다) <SPAN STYLE='font-family:"바탕"'>로버가 하나의 전력시스템에 묶여 전체 시스템이 fail하는 것을 방지하기 위해서</SPAN></P>
 
 		<P CLASS=HStyle0>&nbsp;</P>
 
